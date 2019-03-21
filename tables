@@ -1,0 +1,118 @@
+CREATE TABLE som_dev.message (
+	messageid	bigint,
+	sendid		text,
+	instanceid	text,
+	customerid	bigint,
+	customername text,
+	userid		bigint,
+	active      boolean,
+	username	text,
+	groupid		bigint,
+	groupname	text,
+	configurationid	bigint,
+	configurationname	text,
+	type		text,	//Email/SMS
+	source		text, //Primary/Secondary
+	emailid		text, 
+	mobilenumber	text,
+	templateid	bigint,
+	subject text,
+	message		text,
+	messagestatus	text,	//New/Open/Completed/Error/Acknowledged/NotAcknowledged/Hold
+	createdby	bigint,
+	createdbyname	text,
+	createddate	timestamp,
+	modifiedby	bigint,
+	modifiedbyname	text,
+	modifieddate	timestamp,
+	status		boolean,
+	comments text,
+	PRIMARY KEY (messageid, modifieddate)
+)WITH CLUSTERING ORDER BY ( modifieddate  desc);
+
+CREATE KEYSPACE som_dev WITH durable_writes = true AND replication = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
+
+drop table message;
+
+select * from message;
+
+INSERT INTO message (messageid,active,comments,configurationid,configurationname,createdby,createdbyname,createddate,customerid,customername,emailid,groupid,groupname,instanceid,message,messagestatus,mobilenumber,modifiedby,modifiedbyname,modifieddate,sendid,source,status,subject,templateid,type,userid,username) VALUES (3,false,null,17,'Sivisoft',1002,'Tiwari, Niraj',1552723848768,1000,'AirTel','tag.nirajkumar@gmail.com',0,null,null,'DO NOT OPEN','Open',null,1002,'Tiwari, Niraj',1552723848768,null,'Primary',true,'DANGER',100,'Email',1002,'tagNiraj');
+INSERT INTO message (messageid,active,comments,configurationid,configurationname,createdby,createdbyname,createddate,customerid,customername,emailid,groupid,groupname,instanceid,message,messagestatus,mobilenumber,modifiedby,modifiedbyname,modifieddate,sendid,source,status,subject,templateid,type,userid,username) VALUES (4,false,null,17,'Sivisoft',1002,'Tiwari, Niraj',1552723848912,1000,'AirTel','tag.sanjeevd@gmail.com',0,null,null,'DO NOT OPEN','New',null,1002,'Tiwari, Niraj',1552723848912,null,'Primary',true,'DANGER',100,'Email',16,'Sanjeev');
+INSERT INTO message (messageid,active,comments,configurationid,configurationname,createdby,createdbyname,createddate,customerid,customername,emailid,groupid,groupname,instanceid,message,messagestatus,mobilenumber,modifiedby,modifiedbyname,modifieddate,sendid,source,status,subject,templateid,type,userid,username) VALUES (5,false,null,17,'Sivisoft',1002,'Tiwari, Niraj',1552723948643,1000,'AirTel','tag.nirajkumar@gmail.com',0,null,null,'DON NOT OPEN','Completed',null,1002,'Tiwari, Niraj',1552723948643,null,'Primary',true,'DANGER',100,'Email',1002,'tagNiraj');
+INSERT INTO message (messageid,active,comments,configurationid,configurationname,createdby,createdbyname,createddate,customerid,customername,emailid,groupid,groupname,instanceid,message,messagestatus,mobilenumber,modifiedby,modifiedbyname,modifieddate,sendid,source,status,subject,templateid,type,userid,username) VALUES (6,false,null,17,'Sivisoft',1002,'Tiwari, Niraj',1552723948658,1000,'AirTel','tag.sanjeevd@gmail.com',0,null,null,'DON NOT OPEN','Error',null,1002,'Tiwari, Niraj',1552723948658,null,'Primary',true,'DANGER',100,'Email',16,'Sanjeev');
+
+INSERT INTO message (messageid,active,comments,configurationid,configurationname,createdby,createdbyname,createddate,customerid,customername,emailid,groupid,groupname,instanceid,message,messagestatus,mobilenumber,modifiedby,modifiedbyname,modifieddate,sendid,source,status,subject,templateid,type,userid,username) VALUES (7,false,null,17,'Sivisoft',1002,'Tiwari, Niraj',1552723948658,1000,'AirTel','tag.sanjeevd@gmail.com',0,null,null,'DON NOT OPEN','Error','9789820328',1002,'Tiwari, Niraj',1552723948658,null,'Primary',true,'DANGER',100,'Email',16,'Sanjeev');
+
+
+INSERT INTO message (messageid,active,comments,configurationid,configurationname,createdby,createdbyname,createddate,customerid,customername,emailid,groupid,groupname,instanceid,message,messagestatus,mobilenumber,modifiedby,modifiedbyname,modifieddate,sendid,source,status,subject,templateid,type,userid,username) VALUES (9,false,null,17,'Sivisoft',1002,'Tiwari, Niraj',1552723948658,1000,'AirTel','tag.sanjeevd@gmail.com',0,null,null,'DON NOT OPEN','Completed','9789820123',1002,'Tiwari, Niraj',1552728317,null,'Primary',true,'DANGER',100,'Email',16,'Sanjeev');
+INSERT INTO message (messageid,active,comments,configurationid,configurationname,createdby,createdbyname,createddate,customerid,customername,emailid,groupid,groupname,instanceid,message,messagestatus,mobilenumber,modifiedby,modifiedbyname,modifieddate,sendid,source,status,subject,templateid,type,userid,username) VALUES (10,false,null,17,'Sivisoft',1002,'Tiwari, Niraj',1552723948658,1000,'AirTel','tag.sanjeevd@gmail.com',0,null,null,'DON NOT OPEN','Completed','9789820123',1002,'Tiwari, Niraj',1552728317,null,'Primary',true,'DANGER',100,'Email',16,'Sanjeev');
+
+
+
+CREATE TABLE som_dev.portlets (
+	portletid	int,
+	portletname	text,
+	portletpath   text,
+	status   boolean,
+	type   text,
+	PRIMARY KEY (portletid)
+);
+drop table portlets;
+
+insert into portlets(portletid, portletname, portletpath, status, type) 
+values ( 1,'Daily', 'path', true, 'default');
+
+insert into portlets(portletid, portletname, portletpath, status, type) 
+values ( 2,'Weekly', 'path', true, 'default');
+
+
+insert into portlets(portletid, portletname, portletpath, status, type) 
+values ( 3,'Monthly', 'path', true, 'default');
+
+
+insert into portlets(portletid, portletname, portletpath, status, type) 
+values ( 4,'Yearly', 'path', true, 'default');
+
+insert into portlets(portletid, portletname, portletpath, status, type) 
+values ( 5,'Recent', 'path', true, 'default');
+
+select * from portlets;
+
+
+CREATE TABLE som_dev.portletroles (
+	roleid	text,
+	portletid	text,
+	id   int,
+	displayorder  int,
+	PRIMARY KEY (roleid)
+);
+
+
+
+CREATE TABLE som_dev.portletusers (
+	id	int,
+	portletid	int,
+	userid  text,
+	status  boolean,
+	displayorder  int,
+	model  text,
+	PRIMARY KEY (id)
+);
+
+drop table portletusers;
+select * from portletusers;
+
+insert into portletusers(id, portletid, userid, status, displayorder, model) 
+values ( 1, 1, '10001', true, 1, '{}');
+
+insert into portletusers(id, portletid, userid, status, displayorder, model) 
+values ( 2, 2, '10001', true, 2, '{}');
+
+insert into portletusers(id, portletid, userid, status, displayorder, model) 
+values ( 3, 3, '10001', true, 3, '{}');
+
+insert into portletusers(id, portletid, userid, status, displayorder, model) 
+values ( 4, 4, '10001', true, 4, '{}');
+
+insert into portletusers(id, portletid, userid, status, displayorder, model) 
+values ( 5, 5, '10001', true, 5, '{}');
